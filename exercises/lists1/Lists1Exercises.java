@@ -1,10 +1,17 @@
+// import javax.swing.plaf.synth.SynthEditorPaneUI;
+
 public class Lists1Exercises {
     /** Returns an IntList identical to L, but with
       * each element incremented by x. L is not allowed
       * to change. */
     public static IntList incrList(IntList L, int x) {
         /* Your code here. */
-        return L;        
+        if(L.rest==null){
+          return null;
+        }
+        IntList Q = new IntList(L.first+x, null);
+        Q.rest = incrList(L.rest, x);
+        return Q;        
     }
 
     /** Returns an IntList identical to L, but with
@@ -12,6 +19,16 @@ public class Lists1Exercises {
       * the 'new' keyword. */
     public static IntList dincrList(IntList L, int x) {
         /* Your code here. */
+        if(L==null){
+          return null;
+        }
+        IntList Q = L;
+        Q.first+=x;
+        dincrList(Q.rest, x);
+        // while(Q!=null){
+        //   Q.first+=x;
+        //   Q=Q.rest;
+        // }
         return L;
     }
 
@@ -26,8 +43,8 @@ public class Lists1Exercises {
         // Test your answers by uncommenting. Or copy and paste the
         // code for incrList and dincrList into IntList.java and
         // run it in the visualizer.
-        // System.out.println(L.get(1));
-        // System.out.println(incrList(L, 3));
-        // System.out.println(dincrList(L, 3));        
-    }
+        System.out.println(L.get(1));
+        System.out.println(incrList(L, 3));
+        System.out.println(dincrList(L, 3));
+      }
 }
